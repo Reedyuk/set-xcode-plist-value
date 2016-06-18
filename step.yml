@@ -1,0 +1,40 @@
+title: Set Xcode Plist Value
+summary: |-
+  Sets the value of a key in the specified Info.plist file. A great
+  way to inject variables into the plist.
+description: |-
+  Set the value of a key in the project's Info.plist file.
+website: https://github.com/reedyuk/set-xcode-plist-value
+source_code_url: https://github.com/reedyuk/set-xcode-plist-value
+support_url: https://github.com/reedyuk/set-xcode-plist-value/issues
+host_os_tags:
+  - "osx-10.10"
+project_type_tags:
+  - ios
+type_tags:
+  - build
+  - xcode
+  - plist
+deps:
+  check_only:
+  - name: xcode
+run_if: ".IsCI"
+inputs:
+  - plist_path:
+    opts:
+      title: "Info.plist file path"
+      description: |
+        Path to the given project's Info.plist file.
+      is_required: true
+  - plist_key:
+    opts:
+      title: "Plist key"
+      description: |
+        The key in the plist file you wish to set.
+      is_required: true
+  - plist_value:
+    opts:
+      title: "Plist value"
+      description: |
+        The value of the key in the plist file you wish to set.
+      is_required: true
