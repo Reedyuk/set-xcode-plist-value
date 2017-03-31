@@ -4,7 +4,7 @@ default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 app:
   envs:
   # define these in your .bitrise.secrets.yml
-  - MY_PLIST_PATH: $MY_PLIST_PATH
+  - MY_PLIST_PATH: ${MY_PLIST_PATH}
 
 workflows:
   # ----------------------------------------------------------------
@@ -24,7 +24,7 @@ workflows:
     - path::./:
         run_if: true
         inputs:
-        - plist_path: ${MY_PLIST_PATH}
+        - plist_path: "../test_path/Info.plist"
         - plist_key: "test_key"
         - plist_value: "test_value"
 
