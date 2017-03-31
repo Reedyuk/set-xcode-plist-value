@@ -24,7 +24,7 @@ inputs:
     opts:
       title: "Info.plist file path"
       description: |
-        Path to the given project's Info.plist file.
+        Path to the given project's Info.plist file, if you are aiming for a file different then the main project's Info.plist, use the $BITRISE_SOURCE_DIR env Var as a prefix.
       is_required: true
   - plist_key:
     opts:
