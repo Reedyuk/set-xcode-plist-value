@@ -24,16 +24,23 @@ if [ -z "${plist_value}" ] ; then
   exit 1
 fi
 
+if [ -z "${plist_add_missing_keys}" ] ; then
+  echo " [!] Missing required input: plist_add_missing_keys (true or false)!"
+  exit 1
+fi
+
 # ---------------------
 # --- Configs:
 
 CONFIG_project_info_plist_path="${plist_path}"
 CONFIG_plist_key_string="${plist_key}"
 CONFIG_plist_value_string="${plist_value}"
+CONFIG_plist_add_missing_keys="${plist_add_missing_keys}"
 
 echo " (i) Provided Info.plist path: ${CONFIG_project_info_plist_path}"
 echo " (i) Plist Key: ${CONFIG_plist_key_string}"
 echo " (i) Plist value: ${CONFIG_plist_value_string}"
+echo " (i) Add missing keys: ${CONFIG_plist_add_missing_keys}"
 
 # ---------------------
 # --- Main:
@@ -42,5 +49,9 @@ echo " (i) Plist value: ${CONFIG_plist_value_string}"
 set -v
 
 # ---- Change Plist Value:
-/usr/libexec/PlistBuddy -c "Set :${CONFIG_plist_key_string} ${CONFIG_plist_value_string}" "${CONFIG_project_info_plist_path}"
+if [[ "${CONFIG_plist_add_missing_keys}" == "true" ]] ; then
+  /usr/libexec/PlistBuddy -c "Add :${CONFIG_plist_key_string} string ${CONFIG_plist_value_string}" "${CONFIG_project_info_plist_path}"
+else
+  /usr/libexec/PlistBuddy -c "Set :${CONFIG_plist_key_string} ${CONFIG_plist_value_string}" "${CONFIG_project_info_plist_path}"
+fi
 # ==> Plist value changed
