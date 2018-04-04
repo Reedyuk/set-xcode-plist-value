@@ -38,3 +38,14 @@ inputs:
       description: |
         The value of the key in the plist file you wish to set.
       is_required: true
+  - plist_add_missing_keys: "false"
+    opts:
+      title: Add missing keys?
+      description: |-
+        (Optional) Will insert the value of the provided key if it isn't already present in the plist file.
+        Options:
+        * "true"
+        * "false"
+      is_expand: false
+      value_options: ["true", "false"]
+      is_dont_change_value: true
